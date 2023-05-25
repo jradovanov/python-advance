@@ -30,6 +30,6 @@ for row in range(3):
         matrix[row].append(col)
 print(matrix)
 
-# one line way to have matrix
+# one line way to have a matrix
 matrix = [[int(x) for x in input().split()] for row in range(3)]
 print(matrix)
