@@ -22,11 +22,12 @@ def movie_organizer(**kwargs):
 
 
 print(movie_organizer(
-    # ("The Godfather", "Drama"),
-    # ("The Hangover", "Comedy"),
-    # ("The Shawshank Redemption", "Drama"),
-    # ("The Pursuit of Happiness", "Drama"),
-    # ("The Hangover Part II", "Comedy")))
+    ("The Godfather", "Drama"),
+    ("The Hangover", "Comedy"),
+    ("The Shawshank Redemption", "Drama"),
+    ("The Pursuit of Happiness", "Drama"),
+    ("The Hangover Part II", "Comedy")))
+
 
 
 
