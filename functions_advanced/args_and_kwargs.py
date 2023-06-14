@@ -37,3 +37,18 @@ def both(*args, **kwargs):
 
 # In args going not named arguments, in kwargs named
 both(5, 6, 7, w=(7, 5), y="harsp", p=False)
+
+=======================
+ef fill_the_box(*args):
+    box = args[0] * args[1] * args[2]
+    small_boxes = []
+    for s in args[3:]:
+        if s == "Finish":
+            break
+        else:
+            small_boxes.append(s)
+
+    if sum(small_boxes) <= box:
+        return f"There is free space in the box. You could put {box - small_boxes} more cubes."
+    else:
+        return f"No more free space! You have {small_boxes - box} more cubes."
