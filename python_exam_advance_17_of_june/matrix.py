@@ -1,0 +1,65 @@
+# Входни данни
+N, M = map(int, input().split(","))
+matrix = [list(input()) for _ in range(N)]
+
+# Намиране на позицията на мишката
+mouse_row, mouse_col = None, None
+for row in range(N):
+    for col in range(M):
+        if matrix[row][col] == 'M':
+            mouse_row, mouse_col = row, col
+            break
+
+# Изпълнение на командите
+cheese_count = sum(row.count('C') for row in matrix)
+trap_count = sum(row.count('T') for row in matrix)
+directions = []
+while True:
+    direction = input()
+    if direction == 'danger':
+        break
+    directions.append(direction)
+
+    new_row, new_col = mouse_row, mouse_col
+
+    if direction == 'up':
+        new_row -= 1
+    elif direction == 'down':
+        new_row += 1
+    elif direction == 'left':
+        new_col -= 1
+    elif direction == 'right':
+        new_col += 1
+
+    if not (0 <= new_row < N and 0 <= new_col < M):
+        print("No more cheese for tonight!")
+        break
+
+    cell_value = matrix[new_row][new_col]
+    if cell_value == '@':
+        continue
+    elif cell_value == 'T':
+        print("Mouse is trapped!")
+        break
+    elif cell_value == 'C':
+        cheese_count -= 1
+        if cheese_count == 0:
+            print("Happy mouse! All the cheese is eaten, good night!")
+            matrix[mouse_row][mouse_col] = '*'
+            matrix[new_row][new_col] = 'M'
+            break
+        else:
+            matrix[mouse_row][mouse_col] = '*'
+            matrix[new_row][new_col] = 'M'
+    elif cell_value == 'M':
+        matrix[mouse_row][mouse_col] = '*'
+        matrix[new_row][new_col] = 'M'
+
+    mouse_row, mouse_col = new_row, new_col
+
+if cheese_count > 0 and direction == 'danger':
+    print("Mouse will come back later!")
+
+# Извеждане на финалната матрица
+for row in matrix:
+    print("".join(row))
